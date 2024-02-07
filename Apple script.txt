@@ -9,7 +9,9 @@ delay 5
 set volume output volume 50
 
 -- Play built-in system sound
-do shell script "osascript -e 'tell application \"Finder\" to play sound \"Submarine\"'"
+tell application "System Events"
+    play sound "Submarine"
+end tell
 
 -- Open Camera
 tell application "Photo Booth"
