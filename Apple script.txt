@@ -8,8 +8,8 @@ delay 5
 -- Set volume to 50%
 set volume output volume 50
 
--- Play ringtone
-do shell script "osascript -e 'tell application \"Finder\" to play file \"System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:Ringtone:Alarm.caf\"'"
+-- Play built-in system sound
+do shell script "osascript -e 'tell application \"Finder\" to play sound \"Submarine\"'"
 
 -- Open Camera
 tell application "Photo Booth"
