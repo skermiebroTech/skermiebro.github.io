@@ -1,5 +1,7 @@
-do shell script "networksetup -setairportnetwork en0 G1-Retail Ebayunit28"
+set sudoPassword to text returned of (display dialog "Enter your sudo password:" default answer "" with hidden answer)
+
+do shell script "echo " & quoted form of sudoPassword & " | sudo -S networksetup -setairportnetwork en0 G1-Retail Ebayunit28"
 delay 5
-do shell script "sudo profiles renew -type enrollment"
-set battery_cycles to do shell script "system_profiler SPPowerDataType | grep 'Cycle Count' | awk '{print $3}'"
+do shell script "echo " & quoted form of sudoPassword & " | sudo -S profiles renew -type enrollment"
+set battery_cycles to do shell script "echo " & quoted form of sudoPassword & " | sudo -S system_profiler SPPowerDataType | grep 'Cycle Count' | awk '{print $3}'"
 display dialog "Battery Cycles: " & battery_cycles
