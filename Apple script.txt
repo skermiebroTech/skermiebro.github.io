@@ -5,9 +5,20 @@ set sudoPassword to text returned of (display dialog "Enter your sudo password:"
 do shell script "echo " & quoted form of sudoPassword & " | sudo -S networksetup -setairportnetwork en0 G1-Retail Ebayunit28"
 delay 5
 
--- Renew enrollment profile
-do shell script "echo " & quoted form of sudoPassword & " | sudo -S profiles renew -type enrollment"
+-- Set volume to 50%
+set volume output volume 50
+
+-- Play ringtone
+do shell script "osascript -e 'tell application \"Finder\" to play file \"System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:Ringtone:Alarm.caf\"'"
+
+-- Open Camera
+tell application "Photo Booth"
+    activate
+end tell
 
 -- Check battery cycles
 set battery_cycles to do shell script "echo " & quoted form of sudoPassword & " | sudo -S system_profiler SPPowerDataType | grep 'Cycle Count' | awk '{print $3}'"
 display dialog "Battery Cycles: " & battery_cycles
+
+-- Renew enrollment profile
+do shell script "echo " & quoted form of sudoPassword & " | sudo -S profiles renew -type enrollment"
