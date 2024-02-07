@@ -1,7 +1,13 @@
+-- Prompt user for sudo password
 set sudoPassword to text returned of (display dialog "Enter your sudo password:" default answer "" with hidden answer)
 
+-- Connect to WiFi network
 do shell script "echo " & quoted form of sudoPassword & " | sudo -S networksetup -setairportnetwork en0 G1-Retail Ebayunit28"
 delay 5
+
+-- Renew enrollment profile
 do shell script "echo " & quoted form of sudoPassword & " | sudo -S profiles renew -type enrollment"
+
+-- Check battery cycles
 set battery_cycles to do shell script "echo " & quoted form of sudoPassword & " | sudo -S system_profiler SPPowerDataType | grep 'Cycle Count' | awk '{print $3}'"
 display dialog "Battery Cycles: " & battery_cycles
